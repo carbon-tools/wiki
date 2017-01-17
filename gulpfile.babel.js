@@ -104,7 +104,7 @@ gulp.task('styles', () => {
     .pipe(gulp.dest('.tmp/styles'));
 });
 
-gulp.task('templates', () => 
+gulp.task('templates', () =>
   gulp.src([
     'dist/templates/*.html',
   ])
@@ -282,6 +282,7 @@ const prepFilesToPublish = [
   'dist/favicon.ico',
 ];
 
+var appendVersion = new Date().getTime();
 gulp.task('pre-publish-sw', () => {
   return gulp.src('dist/service-worker.js', {
     dot: true,
@@ -290,6 +291,9 @@ gulp.task('pre-publish-sw', () => {
     .pipe($.replace('"scripts/sw/', '".app/scripts/sw/'))
     .pipe($.replace('"scripts/main', '".app/scripts/main'))
     .pipe($.replace('"styles/main', '".app/styles/main'))
+    .pipe($.replace(/\.js"/, '.js?v=' + appendVersion + '"'))
+    .pipe($.replace(/\.css"/, '.css?v=' + appendVersion + '"'))
+    .pipe($.replace(/\.html"/, '.html?v=' + appendVersion + '"'))
     .pipe(gulp.dest('dist'));
 });
 
@@ -300,6 +304,9 @@ gulp.task('pre-publish', ['pre-publish-sw'], () => {
   })
     .pipe($.replace('/scripts/', '/.app/scripts/'))
     .pipe($.replace('/styles/', '/.app/styles/'))
+    .pipe($.replace(/\.js/gi, '.js?v=' + appendVersion))
+    .pipe($.replace(/\.css/gi, '.css?v=' + appendVersion))
+    .pipe($.replace(/\.html/gi, '.html?v=' + appendVersion))
     .pipe(gulp.dest('dist/.app'))
     .pipe($.size({title: 'pre-publish'}));
 });

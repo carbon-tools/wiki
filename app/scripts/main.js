@@ -132,7 +132,6 @@
   var editor = new carbon.Editor(el, {
     article: article,
     modules: [
-      carbon.GiphyComponent,
       carbon.EmbeddedComponent,
     ],
   });
@@ -147,8 +146,22 @@
     },
     ComponentClass: carbon.EmbeddedComponent
   });
-  editor.install(carbon.SelfieExtension);
+  editor.install(carbon.GiphySearch, {
+    apiKey: 'dc6zaTOxFJmzC'
+  });
   editor.install(carbon.LayoutingExtension);
+  var uploadManager = new carbon.UploadManager(editor, {
+    uploaders: [new carbon.CarbonUpUploader({})]
+  });
+  editor.install(carbon.SelfieExtension, {
+    uploadManager: uploadManager,
+  });
+  editor.install(carbon.FilePicker, {
+    uploadManager: uploadManager,
+  });
+  editor.install(carbon.DragDropFiles, {
+    uploadManager: uploadManager,
+  });
 
   editor.render();
 
