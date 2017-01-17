@@ -83,8 +83,10 @@
   var endsWithSlash = path[path.length - 1] === '/';
   var namePrefix = endsWithSlash ? '' : '/';
   var filename = path[0] === '/' ? path.substring(1) : path;
-  var outputFilename = filename + namePrefix + 'index.html';
-  var editFilename = filename + namePrefix + 'edit.html';
+  // Avoid renaming these during the build process.
+  var ext = 'html';
+  var outputFilename = filename + namePrefix + 'index.' + ext;
+  var editFilename = filename + namePrefix + 'edit.' + ext;
 
   if (filename.indexOf('.app/') !== -1) {
     window.alert('Wrong path. Cannot write things inside .app/ direcotry');
