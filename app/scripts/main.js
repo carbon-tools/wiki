@@ -164,6 +164,9 @@
   editor.install(carbon.DragDropFiles, {
     uploadManager: uploadManager,
   });
+  editor.install(carbon.LinkEmbeddingExtension, {
+    parsingService: new carbon.CarbonParser({}),
+  });
 
   editor.render();
 
