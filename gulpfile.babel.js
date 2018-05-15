@@ -319,7 +319,7 @@ gulp.task('publish', ['default'], () => {
     .pipe($.gcloudPublish({
       base: '.app',
       bucket: $.util.env.bucket || 'docsapp.carbon.tools',
-      keyFilename: 'carbon-tools-8eba8676ded7.json',
+      keyFilename: 'carbon-tools-68e2763a0a39.json',
       projectId: 'carbon-tools',
       public: true,
       metadata: {
@@ -335,7 +335,7 @@ gulp.task('deploy', ['publish'], () => {
   ])
     .pipe($.gcloudPublish({
       bucket: $.util.env.bucket || 'docsapp.carbon.tools',
-      keyFilename: 'carbon-tools-8eba8676ded7.json',
+      keyFilename: 'carbon-tools-68e2763a0a39.json',
       projectId: 'carbon-tools',
       public: true,
       metadata: {
