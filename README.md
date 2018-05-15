@@ -9,4 +9,9 @@ allow editors to upload photos and edit pages.
 * [DocsApp](https://docsapp.carbon.tools/)
 * [SillyWiki](https://sillywiki.carbon.tools/)
 
+
+Once you deploy this make sure to configure your GCS bucket to serve index.html as the 404 error so people
+can create new pages.
+
+
 Note: This repo started with the Skeleton [Web Starter Kit](https://github.com/google/web-starter-kit/releases/latest)
